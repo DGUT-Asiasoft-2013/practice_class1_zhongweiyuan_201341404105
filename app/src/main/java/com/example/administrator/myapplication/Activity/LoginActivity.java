@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.administrator.myapplication.R;
+import com.example.administrator.myapplication.fragment.PasswordRecoverStep1Fragment;
 import com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment;
 
 public class LoginActivity extends AppCompatActivity {
@@ -45,6 +47,13 @@ public class LoginActivity extends AppCompatActivity {
                 startHelloWorldActivity();
             }
         });
+        TextView textView = (TextView)findViewById(R.id.btn_forget_password);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startPasswordRecoverActivity();
+            }
+        });
     }
 
     @Override
@@ -57,17 +66,29 @@ public class LoginActivity extends AppCompatActivity {
         password.setLabelText("密码");
         password.setIsPassword(true);
 
+
+
     }
 
     void startRegisterActivity(){
         Intent itnt = new Intent(this, RegisterActivity.class);
         startActivity(itnt);
-        finish();
     }
 
     void startHelloWorldActivity(){
         Intent itnt = new Intent(this, HelloWorldActivity.class);
         startActivity(itnt);
         finish();
+    }
+
+    void startPasswordRecoverStep1Fragment() {
+        Intent itnt = new Intent(this, PasswordRecoverStep1Fragment.class);
+        startActivity(itnt);
+    }
+
+
+    void startPasswordRecoverActivity(){
+        Intent itnt = new Intent(this, PasswordRecoverActivity.class);
+        startActivity(itnt);
     }
 }

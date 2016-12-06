@@ -17,15 +17,15 @@
 
 
             <fragment
-                class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
-                android:layout_width="match_parent"
-                android:id="@+id/frag_account"
-                android:layout_height="wrap_content">
+            class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
+            android:layout_width="match_parent"
+            android:id="@+id/frag_account"
+            android:layout_height="wrap_content">
 
-            </fragment>
+        </fragment>
 
             <fragment
-                class="com.example.administrator.myapplication.fragment.inputcells.PictureInputCellFragment"
+                class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
                 android:layout_width="match_parent"
                 android:id="@+id/frag_emailadress"
                 android:layout_height="wrap_content">
