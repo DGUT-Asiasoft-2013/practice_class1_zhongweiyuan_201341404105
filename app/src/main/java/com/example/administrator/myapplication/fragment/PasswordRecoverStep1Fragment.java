@@ -20,23 +20,25 @@ import com.example.administrator.myapplication.fragment.inputcells.SimpleTextInp
 public class PasswordRecoverStep1Fragment extends Fragment {
 
     SimpleTextInputCellFragment fragEmail;
-
+    View view;
     private GoStep2Listener goStep2Listener;
     Button next;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_password_recover_step1, container, false);
+        if(view==null) {
+            view = inflater.inflate(R.layout.fragment_password_recover_step1, container, false);
 
-        fragEmail = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_email);
+            fragEmail = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_email);
 
-        next= (Button) view.findViewById(R.id.btn_next);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goStep2Listener. goStep2();
-            }
-        });
+            next = (Button) view.findViewById(R.id.btn_next);
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    goStep2Listener.goStep2();
+                }
+            });
+        }
         return view;
     }
 

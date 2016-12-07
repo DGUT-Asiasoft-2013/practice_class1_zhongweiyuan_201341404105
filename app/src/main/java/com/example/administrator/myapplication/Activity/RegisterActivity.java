@@ -1,5 +1,6 @@
 package com.example.administrator.myapplication.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import com.example.administrator.myapplication.R;
 import com.example.administrator.myapplication.fragment.inputcells.PictureInputCellFragment;
 import com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends Activity {
 
     SimpleTextInputCellFragment account;
     SimpleTextInputCellFragment password;

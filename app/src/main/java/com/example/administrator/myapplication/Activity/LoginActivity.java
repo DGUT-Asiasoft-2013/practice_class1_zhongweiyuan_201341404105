@@ -1,5 +1,6 @@
 package com.example.administrator.myapplication.Activity;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Handler;
@@ -14,7 +15,7 @@ import com.example.administrator.myapplication.R;
 import com.example.administrator.myapplication.fragment.PasswordRecoverStep1Fragment;
 import com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     SimpleTextInputCellFragment account;
     SimpleTextInputCellFragment password;

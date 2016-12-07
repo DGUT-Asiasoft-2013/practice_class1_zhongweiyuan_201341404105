@@ -1,5 +1,6 @@
 package com.example.administrator.myapplication.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -8,7 +9,7 @@ import android.os.Bundle;
 
 import com.example.administrator.myapplication.R;
 
-public class BootActivity extends AppCompatActivity {
+public class BootActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
