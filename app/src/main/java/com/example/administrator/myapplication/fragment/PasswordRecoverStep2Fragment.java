@@ -28,9 +28,9 @@ public class PasswordRecoverStep2Fragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_password_recover_step2, container, false);
 
-        username = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_username);
-        newpassword1 = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_newpassword1);
-        newpassword2 = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_newpassword2);
+        username = (SimpleTextInputCellFragment) getChildFragmentManager().findFragmentById(R.id.input_username);
+        newpassword1 = (SimpleTextInputCellFragment) getChildFragmentManager().findFragmentById(R.id.input_newpassword1);
+        newpassword2 = (SimpleTextInputCellFragment) getChildFragmentManager().findFragmentById(R.id.input_newpassword2);
 
         sure= (Button) view.findViewById(R.id.input_sure);
         sure.setOnClickListener(new View.OnClickListener() {

@@ -25,27 +25,31 @@ import android.widget.Toast;
 
 import com.example.administrator.myapplication.R;
 
+import java.io.ByteArrayOutputStream;
+
 /**
  * Created by Administrator on 2016/12/5.
  */
 
-public class PictureInputCellFragment extends BaseInputCellFragment{
+public class PictureInputCellFragment extends BaseInputCellFragment {
     final int REQUESTCODE_CAMERA = 1;
     final int REQUESTCODE_PICTURE = 2;
 
     ImageView imageView;
     TextView labelText;
     TextView hintText;
+    byte[] pngData;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_inputcell_picture,container,false);
-        imageView = (ImageView)view.findViewById(R.id.image);
-        labelText = (TextView)view.findViewById(R.id.picture);
-        hintText = (TextView)view.findViewById(R.id.hint);
+        View view = inflater.inflate(R.layout.fragment_inputcell_picture, container, false);
+        imageView = (ImageView) view.findViewById(R.id.image);
+        labelText = (TextView) view.findViewById(R.id.picture);
+        hintText = (TextView) view.findViewById(R.id.hint);
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -56,10 +60,10 @@ public class PictureInputCellFragment extends BaseInputCellFragment{
         });
 
 
-        return  view;
+        return view;
     }
 
-    void onImageViewClicked(){
+    void onImageViewClicked() {
         String[] items = {
                 "拍照",
                 "相册"
@@ -69,7 +73,7 @@ public class PictureInputCellFragment extends BaseInputCellFragment{
                 .setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        switch(i){
+                        switch (i) {
                             case 0:
                                 takePhote();
                                 break;
@@ -83,9 +87,8 @@ public class PictureInputCellFragment extends BaseInputCellFragment{
 
                     }
                 })
-                .setNegativeButton("取消",null)
+                .setNegativeButton("取消", null)
                 .show();
-
 
 
     }
@@ -93,33 +96,35 @@ public class PictureInputCellFragment extends BaseInputCellFragment{
     void pickFromAlbum() {
         Intent itnt = new Intent(Intent.ACTION_GET_CONTENT);
         itnt.setType("image/*");
-        startActivityForResult(itnt,REQUESTCODE_PICTURE);
+        startActivityForResult(itnt, REQUESTCODE_PICTURE);
 
     }
 
     void takePhote() {
         Intent itnt = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(itnt,1);
+        startActivityForResult(itnt, 1);
     }
+
+    Bitmap bmp;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Activity.RESULT_CANCELED){
+        if (requestCode == Activity.RESULT_CANCELED) {
             return;
         }
 
-        if (requestCode == REQUESTCODE_CAMERA){
-            Bitmap bmp = (Bitmap) data.getExtras().get("data");
+        if (requestCode == REQUESTCODE_CAMERA) {
+            bmp = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(bmp);
 //            Log.d("camera capture",data.getExtras().keySet().toString());
 //            Toast.makeText(getActivity(),data.getDataString(),Toast.LENGTH_LONG).show();
-        }else if (requestCode == REQUESTCODE_PICTURE){
+        } else if (requestCode == REQUESTCODE_PICTURE) {
 
-            Bitmap bmp;
-            try{
-                bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),data.getData());
+
+            try {
+                bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
                 imageView.setImageBitmap(bmp);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -130,6 +135,8 @@ public class PictureInputCellFragment extends BaseInputCellFragment{
         }
     }
 
+
+
     public void setLabelText(String labelText) {
         this.labelText.setText(labelText);
     }
@@ -138,7 +145,21 @@ public class PictureInputCellFragment extends BaseInputCellFragment{
         this.labelText.setText(hintText);
     }
 
+    @Override
+    public String getText() {
+        return labelText.getText().toString();
+    }
 
 
+    public byte[] getPngData() {
 
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        if (bmp == null)
+            return null;
+        else
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, bos);
+
+        byte[] byteArray = bos.toByteArray();
+        return byteArray;
+    }
 }

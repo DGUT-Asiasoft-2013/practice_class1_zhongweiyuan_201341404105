@@ -17,41 +17,49 @@
 
 
             <fragment
-            class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
-            android:layout_width="match_parent"
-            android:id="@+id/frag_account"
-            android:layout_height="wrap_content">
-
-        </fragment>
-
-            <fragment
+                android:id="@+id/frag_account"
                 class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </fragment>
+
+            <fragment
+                android:id="@+id/frag_name"
+                class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </fragment>
+
+            <fragment
                 android:id="@+id/frag_emailadress"
+                class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             </fragment>
 
             <fragment
-                class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
-                android:layout_width="match_parent"
                 android:id="@+id/frag_password"
-                android:layout_height="wrap_content">
-
-            </fragment>
-
-            <fragment
                 class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
                 android:layout_width="match_parent"
-                android:id="@+id/frag_passwordReapeat"
                 android:layout_height="wrap_content">
 
             </fragment>
 
             <fragment
+                android:id="@+id/frag_passwordReapeat"
+                class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </fragment>
+
+            <fragment
+                android:id="@+id/frag_picture"
                 class="com.example.administrator.myapplication.fragment.inputcells.PictureInputCellFragment"
                 android:layout_width="match_parent"
-                android:id="@+id/frag_picture"
                 android:layout_height="wrap_content">
 
             </fragment>
@@ -61,21 +69,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_submit"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:text="SUBMIT" />
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="SUBMIT" />
 
-            <Button
-                android:id="@+id/btn_goback"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="GOBACK" />
 
             </LinearLayout>
 

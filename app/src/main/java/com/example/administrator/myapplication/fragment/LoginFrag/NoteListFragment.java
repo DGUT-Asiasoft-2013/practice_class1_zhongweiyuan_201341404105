@@ -18,7 +18,7 @@ public class NoteListFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view==null){
-            view = inflater.inflate(R.layout.fragment_search, null);
+            view = inflater.inflate(R.layout.fragment_note_list, null);
         }
 
         return view;

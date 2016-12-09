@@ -1,14 +1,17 @@
 package com.example.administrator.myapplication.fragment.inputcells;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.administrator.myapplication.Activity.ReleaseNewsActivity;
 import com.example.administrator.myapplication.R;
 
 /**
@@ -30,6 +33,15 @@ public class MainTabbarFragment extends Fragment {
         tabNotes = view.findViewById(R.id.tab_notes);
         tabSearch = view.findViewById(R.id.tab_search);
         tabMe = view.findViewById(R.id.tab_me);
+
+        btnNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ReleaseNewsActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.none);
+            }
+        });
 
         tabs = new View[] {
                 tabFeeds, tabNotes, tabSearch, tabMe
