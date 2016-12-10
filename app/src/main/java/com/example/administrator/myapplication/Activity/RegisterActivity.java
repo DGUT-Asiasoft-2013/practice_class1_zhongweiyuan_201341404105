@@ -38,7 +38,6 @@ public class RegisterActivity extends Activity {
     static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,14 +81,11 @@ public class RegisterActivity extends Activity {
     }
 
 
-    ProgressDialog  progressDialog;
+    ProgressDialog progressDialog;
+
     void startLoginActivity() {
 
-        progressDialog= new ProgressDialog(this);
-        progressDialog.setMessage("注册进行中");
-        progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
+
 
         String accountString = account.getText();//取值
         String passwordString = password.getText();
@@ -99,10 +95,18 @@ public class RegisterActivity extends Activity {
 
         if (!passwordString.equals(passwordReapeatString)) { //判断密码不相同，输出密码不一致
 
-            Toast.makeText(this, "密码不一致", Toast.LENGTH_LONG).show();//吐司
+            Toast.makeText(this, "密码不一致", Toast.LENGTH_SHORT).show();//吐司
 
             return;
         }
+
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("注册进行中");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
 
         passwordString = MD5.getMD5(passwordString);
 
@@ -113,10 +117,11 @@ public class RegisterActivity extends Activity {
                 .addFormDataPart("account", accountString)//获取登录名
                 .addFormDataPart("passwordHash", passwordString)//获取昵称
                 .addFormDataPart("email", emailadressString)
-                .addFormDataPart("name", nameString)
-               ;
+                .addFormDataPart("name", nameString);
 
-        body.addFormDataPart("avatar", "avatar", RequestBody.create(MEDIA_TYPE_PNG, picture.getPngData()));
+        if (picture.getPngData() != null) {
+            body.addFormDataPart("avatar", "avatar", RequestBody.create(MEDIA_TYPE_PNG, picture.getPngData()));
+        }
 
         Request request = new Request.Builder()
                 .url("http://172.27.0.37:8080/membercenter/api/register")
@@ -144,29 +149,33 @@ public class RegisterActivity extends Activity {
             public void run() {
                 new AlertDialog.Builder(RegisterActivity.this)
                         .setTitle("注册失败")
-                        .setMessage("原因：" + e.getLocalizedMessage())
+                        .setMessage("原因：" + e==null?"sb":e.getLocalizedMessage())
                         .setCancelable(true)
                         .show();
             }
         });
-
     }
 
     void onResponse(Call call, final Response response) throws IOException {//注册成功执行
 
         progressDialog.dismiss();
-        final String result=response.body().string();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                new AlertDialog.Builder(RegisterActivity.this)
-                        .setTitle("注册成功")
-                        .setMessage("注册成功：" + result)
-                        .setCancelable(true)
-                        .show();
-            }
+        if (response.isSuccessful()) {
+            final String result = response.body().string();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    new AlertDialog.Builder(RegisterActivity.this)
+                            .setTitle("注册成功")
+                            .setMessage("注册成功：" + result)
+                            .setCancelable(true)
+                            .show();
+
+                }
             });
-        finish();
+        }else {
+            onFailure(call,null);
+        }
     }
+
 
 }
