@@ -21,6 +21,7 @@ import com.example.administrator.myapplication.Activity.RegisterActivity;
 import com.example.administrator.myapplication.Activity.Server;
 import com.example.administrator.myapplication.Activity.User;
 import com.example.administrator.myapplication.R;
+import com.example.administrator.myapplication.View.AvatarView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class MyProfileFragment extends Fragment {
 
     TextView textView;
     ProgressBar progressBar;
-//    AvatarView avatarView;
+    AvatarView avatarView;
 
 
     @Nullable
@@ -47,7 +48,7 @@ public class MyProfileFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_my_profile, null);
             textView = (TextView) view.findViewById(R.id.textView);
             progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-//            avatarView = (TextView)view.findViewById(R.id.avatarView);
+            avatarView = (AvatarView) view.findViewById(R.id.avatar);
         }
         return view;
     }
@@ -103,6 +104,7 @@ public class MyProfileFragment extends Fragment {
 
     protected void onResponse(Call arg0, User user) {
         progressBar.setVisibility(View.GONE);
+        avatarView.load(user);
         textView.setVisibility(View.VISIBLE);
         textView.setTextColor(Color.RED);
         textView.setText("HELLO," + user.getName());

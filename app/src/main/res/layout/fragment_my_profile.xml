@@ -19,11 +19,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
-    <!--<com.example.administrator.myapplication.fragment.widgets.AvatarView-->
-        <!--android:id="@+id/avatar"-->
-        <!--android:layout_width="120dp"-->
-        <!--android:layout_height="120dp"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginTop="80dp" />-->
+    <com.example.administrator.myapplication.View.AvatarView
+        android:id="@+id/avatar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp" />
 
 </FrameLayout>

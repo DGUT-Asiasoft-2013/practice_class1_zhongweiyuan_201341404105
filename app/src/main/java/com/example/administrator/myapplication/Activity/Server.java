@@ -17,6 +17,7 @@ import okhttp3.Request;
 
 public class Server {
     static OkHttpClient client;
+    public static String serverAddress;
 
     static{
         CookieManager cookieManager = new CookieManager();

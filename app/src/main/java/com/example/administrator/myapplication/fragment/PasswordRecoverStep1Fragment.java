@@ -23,6 +23,7 @@ public class PasswordRecoverStep1Fragment extends Fragment {
     View view;
     private GoStep2Listener goStep2Listener;
     Button next;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
