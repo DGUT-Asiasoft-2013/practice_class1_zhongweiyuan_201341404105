@@ -86,7 +86,6 @@ public class RegisterActivity extends Activity {
     void startLoginActivity() {
 
 
-
         String accountString = account.getText();//取值
         String passwordString = password.getText();
         String passwordReapeatString = passwordReapeat.getText();
@@ -103,7 +102,7 @@ public class RegisterActivity extends Activity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("注册进行中");
-        progressDialog.setCancelable(false);
+        progressDialog.setCancelable(true);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
@@ -123,14 +122,13 @@ public class RegisterActivity extends Activity {
             body.addFormDataPart("avatar", "avatar", RequestBody.create(MEDIA_TYPE_PNG, picture.getPngData()));
         }
 
-        Request request = new Request.Builder()
-                .url("http://172.27.0.37:8080/membercenter/api/register")
+        Request request = Server.requestBuilderWithApi("/register")
                 .post(body.build())
                 .build();
         client.newCall(request).enqueue(new Callback() {//向后台发送请求进入队列中
             @Override
             public void onFailure(Call call, IOException e) {
-                RegisterActivity.this.onFailure(call, e);//注册失败执行
+                RegisterActivity.this.onFailure(call, e.getLocalizedMessage());//注册失败执行
 
             }
 
@@ -142,14 +140,14 @@ public class RegisterActivity extends Activity {
         });
     }
 
-    void onFailure(Call call, final IOException e) {//注册失败执行
+    void onFailure(Call call, final String e) {//注册失败执行
         progressDialog.dismiss();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 new AlertDialog.Builder(RegisterActivity.this)
                         .setTitle("注册失败")
-                        .setMessage("原因：" + e==null?"sb":e.getLocalizedMessage())
+                        .setMessage("原因：" +e)
                         .setCancelable(true)
                         .show();
             }
@@ -159,8 +157,10 @@ public class RegisterActivity extends Activity {
     void onResponse(Call call, final Response response) throws IOException {//注册成功执行
 
         progressDialog.dismiss();
-        if (response.isSuccessful()) {
-            final String result = response.body().string();
+
+
+        final String result = response.body().string();
+        if (!result.equals("")) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -172,8 +172,8 @@ public class RegisterActivity extends Activity {
 
                 }
             });
-        }else {
-            onFailure(call,null);
+        } else {
+            onFailure(call, "数据异常！");
         }
     }
 

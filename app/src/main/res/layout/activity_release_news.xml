@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="发表消息"
+            android:text="发表文章"
             android:textColor="@android:color/black"
             android:textSize="20dp" />
 
@@ -35,32 +35,51 @@
     </FrameLayout>
 
     <RelativeLayout
-        android:id="@+id/frag_news"
+        android:id="@+id/frag_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/button"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/navbar3"
-        android:layout_above="@+id/button">
+        android:layout_below="@+id/navbar3">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editTitle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="start"
-            android:hint="发表一次消息"
+            android:layout_height="50dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
-
+            android:layout_alignParentTop="true"
+            android:hint="标题" />
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/button"
+    <RelativeLayout
+        android:id="@+id/frag_news"
         android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/navbar3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="start"
+        android:hint="发表一篇文章"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/frag_news"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button_send" />
+
+
+    <Button
+        android:id="@+id/button_send"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="Button"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right"
+        android:gravity="center"
+        android:text="发表" />
 
 </RelativeLayout>

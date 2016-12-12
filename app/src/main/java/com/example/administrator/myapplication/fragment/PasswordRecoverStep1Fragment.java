@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.administrator.myapplication.Activity.LoginActivity;
 import com.example.administrator.myapplication.R;
@@ -30,7 +31,7 @@ public class PasswordRecoverStep1Fragment extends Fragment {
         if(view==null) {
             view = inflater.inflate(R.layout.fragment_password_recover_step1, container, false);
 
-            fragEmail = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_email);
+            fragEmail = (SimpleTextInputCellFragment) getChildFragmentManager().findFragmentById(R.id.input_email);
 
             next = (Button) view.findViewById(R.id.btn_next);
             next.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +42,10 @@ public class PasswordRecoverStep1Fragment extends Fragment {
             });
         }
         return view;
+    }
+
+    public String getText() {
+            return fragEmail.getText();
     }
 
 
@@ -66,7 +71,5 @@ public class PasswordRecoverStep1Fragment extends Fragment {
             fragEmail.setHintText("email@123.com");
         }
     }
-
-
 
 }

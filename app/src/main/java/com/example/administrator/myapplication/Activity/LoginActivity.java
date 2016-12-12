@@ -102,9 +102,7 @@ public class LoginActivity extends Activity {
                 .addFormDataPart("passwordHash", MD5.getMD5(passwordString));//获取昵称
 
         OkHttpClient client = new OkHttpClient();
-        okhttp3.Request request=new okhttp3.Request.Builder()
-                .url("http://172.27.0.37:8080/membercenter/api/login")
-                .method("post", null)
+        okhttp3.Request request = Server.requestBuilderWithApi("/login")
                 .post(body.build())
                 .build();
 
@@ -114,7 +112,6 @@ public class LoginActivity extends Activity {
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-
 
 
         client.newCall(request).enqueue(new Callback() {
@@ -144,7 +141,7 @@ public class LoginActivity extends Activity {
             }
 
             @Override
-            public void onFailure(final Call arg0,final IOException arg1) {
+            public void onFailure(final Call arg0, final IOException arg1) {
                 progressDialog.dismiss();
                 runOnUiThread(new Runnable() {
                     @Override
@@ -158,12 +155,11 @@ public class LoginActivity extends Activity {
     }
 
 
-
     void onFailure(Call arg0, Exception arg1) {
         new AlertDialog.Builder(LoginActivity.this)
-                .setTitle("sb")
+                .setTitle("请求失败！")
                 .setMessage(arg1.getLocalizedMessage())
-                .setPositiveButton("hh", null)
+                .setPositiveButton("OK", null)
                 .show();
     }
 

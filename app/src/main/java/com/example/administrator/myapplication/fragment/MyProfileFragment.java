@@ -61,8 +61,8 @@ public class MyProfileFragment extends Fragment {
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
         OkHttpClient client = Server.getSharedClient();
-        final Request request = Server.requestBuilderWithApi("me")
-                .method("get", null)
+        final Request request = Server.requestBuilderWithApi("/me")
+                .method("GET", null)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
