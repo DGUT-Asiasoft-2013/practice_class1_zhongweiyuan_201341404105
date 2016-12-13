@@ -1,22 +1,13 @@
-package com.example.administrator.myapplication.fragment.inputcells;
+package com.example.administrator.myapplication.fragment.widgets;
+
+import com.example.administrator.myapplication.R;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.example.administrator.myapplication.Activity.ReleaseNewsActivity;
-import com.example.administrator.myapplication.R;
-
-/**
- * Created by Administrator on 2016/12/6.
- */
 
 public class MainTabbarFragment extends Fragment {
 
@@ -34,15 +25,6 @@ public class MainTabbarFragment extends Fragment {
         tabSearch = view.findViewById(R.id.tab_search);
         tabMe = view.findViewById(R.id.tab_me);
 
-        btnNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ReleaseNewsActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.none);
-            }
-        });
-
         tabs = new View[] {
                 tabFeeds, tabNotes, tabSearch, tabMe
         };
@@ -57,12 +39,19 @@ public class MainTabbarFragment extends Fragment {
             });
         }
 
+        btnNew.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                onNewClicked();
+            }
+        });
+
         return view;
     }
 
-    public  static interface OnTabSelectedListener{
-        void  onTabSelected(int index);
-
+    public static interface OnTabSelectedListener {
+        void onTabSelected(int index);
     }
 
     OnTabSelectedListener onTabSelectedListener;
@@ -72,10 +61,17 @@ public class MainTabbarFragment extends Fragment {
     }
 
     public void setSelectedItem(int index){
-        if (index>=0 && index<tabs.length){
+        if(index>=0 && index<tabs.length){
             onTabClicked(tabs[index]);
-
         }
+    }
+
+    public int getSelectedIndex(){
+        for(int i=0; i<tabs.length; i++){
+            if(tabs[i].isSelected()) return i;
+        }
+
+        return -1;
     }
 
     void onTabClicked(View tab){
@@ -96,10 +92,18 @@ public class MainTabbarFragment extends Fragment {
         }
     }
 
+    public static interface OnNewClickedListener{
+        void onNewClicked();
+    }
 
-//    void onTabClicked(View tab){
-//        for(View otherTab : tabs){
-//            otherTab.setSelected(otherTab == tab);
-//        }
-//    }
+    OnNewClickedListener onNewClickedListener;
+
+    public void setOnNewClickedListener(OnNewClickedListener listener){
+        this.onNewClickedListener = listener;
+    }
+
+    void onNewClicked(){
+        if(onNewClickedListener!=null)
+            onNewClickedListener.onNewClicked();
+    }
 }

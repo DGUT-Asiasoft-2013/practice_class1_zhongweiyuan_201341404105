@@ -1,84 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_login"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <ScrollView
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        android:text="LOGIN TO HELLO"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <fragment
+        android:id="@+id/input_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
+        tools:layout="@layout/fragment_inputcell_simpletext" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="LOGIN TO HELLO"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+    <fragment
+        android:id="@+id/input_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
+        tools:layout="@layout/fragment_inputcell_simpletext" />
 
-            <fragment
-                android:id="@+id/frag_account"
-                class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/btn_forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:padding="2dp"
+        android:text="忘记密码？"
+        android:textColor="#00f" />
 
-            </fragment>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
 
-            <fragment
-                android:id="@+id/frag_password"
-                class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="注册" />
 
-            </fragment>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="登录" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/btn_forget_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:padding="2dp"
-                android:text="忘记密码？"
-                android:textColor="#00f" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_EXIT"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:text="EXIT" />
-
-                <Button
-                    android:id="@+id/btn_REGISTER"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:text="REGISTER" />
-
-                <Button
-                    android:id="@+id/btn_Login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:text="LOGIN" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-</FrameLayout>
+</LinearLayout>

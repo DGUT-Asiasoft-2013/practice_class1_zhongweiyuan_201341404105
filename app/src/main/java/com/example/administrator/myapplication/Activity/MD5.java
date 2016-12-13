@@ -3,9 +3,6 @@ package com.example.administrator.myapplication.Activity;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by Administrator on 2016/12/9.
- */
 
 public class MD5 {
 

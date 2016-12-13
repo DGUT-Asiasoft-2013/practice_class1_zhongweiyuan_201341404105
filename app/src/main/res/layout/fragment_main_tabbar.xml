@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:background="@android:color/holo_green_dark"
-    android:orientation="horizontal">
+    android:orientation="horizontal" >
 
     <LinearLayout
         android:id="@+id/tab_feeds"
@@ -12,13 +12,13 @@
         android:layout_weight="1"
         android:background="@drawable/tab_background"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/bg_tab_roundrect" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,13 +34,13 @@
         android:layout_weight="1"
         android:background="@drawable/tab_background"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/bg_tab_roundrect" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,13 +63,13 @@
         android:layout_weight="1"
         android:background="@drawable/tab_background"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/bg_tab_roundrect" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,13 +85,13 @@
         android:layout_weight="1"
         android:background="@drawable/tab_background"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/bg_tab_roundrect" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="wrap_content"

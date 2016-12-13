@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +23,7 @@
         <activity android:name=".Activity.PasswordRecoverActivity" />
         <activity android:name=".Activity.HelloWorldActivity" />
         <activity android:name=".Activity.ContentFeedActivity" />
-        <activity android:name=".Activity.ReleaseNewsActivity"></activity>
+        <activity android:name=".Activity.NewContentActivity"></activity>
     </application>
 
 </manifest>
