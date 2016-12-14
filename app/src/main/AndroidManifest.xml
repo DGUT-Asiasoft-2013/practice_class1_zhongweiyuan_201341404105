@@ -6,8 +6,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="HelloWorld"
+        android:icon="@mipmap/dgutlogo"
+        android:label="东莞理工Android实训"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -23,7 +23,8 @@
         <activity android:name=".Activity.PasswordRecoverActivity" />
         <activity android:name=".Activity.HelloWorldActivity" />
         <activity android:name=".Activity.ContentFeedActivity" />
-        <activity android:name=".Activity.NewContentActivity"></activity>
+        <activity android:name=".Activity.NewContentActivity" />
+        <activity android:name=".Activity.CommentActivity"></activity>
     </application>
 
 </manifest>

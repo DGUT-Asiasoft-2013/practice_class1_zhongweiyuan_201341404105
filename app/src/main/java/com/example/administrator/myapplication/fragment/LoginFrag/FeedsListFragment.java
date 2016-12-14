@@ -50,7 +50,7 @@ public class FeedsListFragment extends Fragment {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_feed_list, null);
             btnLoadMore = inflater.inflate(R.layout.widget_load_more_button, null);
-            textLoadMore = (TextView) btnLoadMore.findViewById(R.id.text);
+            textLoadMore = (TextView) btnLoadMore.findViewById(R.id.load_more_text);
 
             listView = (ListView) view.findViewById(R.id.list);
             listView.addFooterView(btnLoadMore);
@@ -94,14 +94,14 @@ public class FeedsListFragment extends Fragment {
             TextView textTitle = (TextView) view.findViewById(R.id.title);
             TextView textAuthorName = (TextView) view.findViewById(R.id.username);
             TextView textDate = (TextView) view.findViewById(R.id.date);
-            AvatarView avatar = (AvatarView) view.findViewById(R.id.avatar);
+            AvatarView avatar = (AvatarView) view.findViewById(R.id.widget_avatar);
 
             Article article = data.get(position);
 
             textContent.setText(article.getText());
             textTitle.setText(article.getTitle());
-            textAuthorName.setText(article.getAuthorName());
-            avatar.load(Server.serverAddress + article.getAuthorAvatar());
+            textAuthorName.setText(article.getAuthor().getName());
+            avatar.load(article.getAuthor());
 
             String dateStr = DateFormat.format("yyyy-MM-dd hh:mm", article.getCreateDate()).toString();
             textDate.setText(dateStr);
@@ -111,13 +111,11 @@ public class FeedsListFragment extends Fragment {
 
         @Override
         public long getItemId(int position) {
-            // TODO Auto-generated method stub
             return position;
         }
 
         @Override
         public Object getItem(int position) {
-            // TODO Auto-generated method stub
             return data.get(position);
         }
 
@@ -128,10 +126,11 @@ public class FeedsListFragment extends Fragment {
     };
 
     void onItemClicked(int position) {
-        Article text = data.get(position);
+        Article article = data.get(position);
 
         Intent itnt = new Intent(getActivity(), ContentFeedActivity.class);
-        itnt.putExtra("text", text);
+//        itnt.putExtra("text", text);
+        itnt.putExtra("data", article);
 
         startActivity(itnt);
     }
@@ -150,19 +149,19 @@ public class FeedsListFragment extends Fragment {
         Server.getSharedClient().newCall(request).enqueue(new Callback() {
             @Override
             public void onResponse(Call arg0, Response arg1) throws IOException {
-                try {
-                    Page<Article> data = new ObjectMapper()
+                try{
+                    final Page<Article> data = new ObjectMapper()
                             .readValue(arg1.body().string(),
-                                    new TypeReference<Page<Article>>() {
-                                    });
-                    FeedsListFragment.this.page = data.getNumber();
-                    FeedsListFragment.this.data = data.getContent();
+                                    new TypeReference<Page<Article>>(){});
+
                     getActivity().runOnUiThread(new Runnable() {
                         public void run() {
+                            FeedsListFragment.this.page = data.getNumber();
+                            FeedsListFragment.this.data = data.getContent();
                             listAdapter.notifyDataSetInvalidated();
                         }
                     });
-                } catch (final Exception e) {
+                }catch(final Exception e){
                     getActivity().runOnUiThread(new Runnable() {
                         public void run() {
                             new AlertDialog.Builder(getActivity())

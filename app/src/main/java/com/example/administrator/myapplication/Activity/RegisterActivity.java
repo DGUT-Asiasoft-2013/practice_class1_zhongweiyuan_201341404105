@@ -77,6 +77,7 @@ public class RegisterActivity extends Activity {
 
         fragInputEmailAddress.setLabelText("邮箱地址");{
             fragInputEmailAddress.setHintText("请输入邮箱地址");
+            fragInputEmailAddress.setIsEmail(true);
         }
     }
 
@@ -135,7 +136,7 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void onResponse(final Call arg0, final Response arg1) throws IOException {
-                final String responseString = arg1.body().string(); //�ף�������������ں�̨�߳��е���
+                final String responseString = arg1.body().string();
                 runOnUiThread(new Runnable() {
                     public void run() {
                         progressDialog.dismiss();

@@ -22,7 +22,7 @@ public class SimpleTextInputCellFragment extends BaseInputCellFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_inputcell_simpletext, container);
-        label = (TextView) view.findViewById(R.id.label);
+        label = (TextView) view.findViewById(R.id.simple_text_label);
         edit = (EditText) view.findViewById(R.id.edit);
         return view;
     }
@@ -41,6 +41,14 @@ public class SimpleTextInputCellFragment extends BaseInputCellFragment {
 
     public void setIsPassword(boolean isPassword) {
         if (isPassword) {
+            edit.setInputType(EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
+        } else {
+            edit.setInputType(EditorInfo.TYPE_CLASS_TEXT);
+        }
+    }
+
+    public void setIsEmail(boolean isEmail) {
+        if (isEmail) {
             edit.setInputType(EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
         } else {
             edit.setInputType(EditorInfo.TYPE_CLASS_TEXT);

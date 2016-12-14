@@ -7,10 +7,11 @@
 
     <RelativeLayout
         android:layout_width="60dp"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_marginLeft="24dp" >
 
-        <com.example.administrator.myapplication.fragment.widgets.AvatarView
-            android:id="@+id/widget_avatar"
+        <com.example.helloworld.fragments.widgets.AvatarView
+            android:id="@+id/avatar"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_centerInParent="true" />
@@ -28,32 +29,24 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="68dp" >
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="18dp"
-            android:text="Title"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
+        android:layout_marginLeft="92dp" >
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="14dp"
-            android:textSize="12sp"
-            android:text="Create Date"
             android:layout_gravity="right"
-            android:textColor="#aaa" />
+            android:text="Create Date"
+            android:textColor="#aaa"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/text"
-            android:layout_marginTop="18dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:text="Content Text" />
+            android:layout_marginTop="18dp"
+            android:text="Content Text"
+            android:textColor="@android:color/black" />
     </FrameLayout>
 
 </FrameLayout>

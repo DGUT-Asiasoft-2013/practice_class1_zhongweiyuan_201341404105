@@ -19,7 +19,7 @@ public class PasswordRecoverStep1Fragment extends Fragment {
         if(view==null){
             view = inflater.inflate(R.layout.fragment_password_recover_step1, null);
 
-            fragEmail = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_email);
+            fragEmail = (SimpleTextInputCellFragment) getChildFragmentManager().findFragmentById(R.id.frag_email);
 
             view.findViewById(R.id.btn_next).setOnClickListener(new View.OnClickListener() {
 
@@ -43,6 +43,7 @@ public class PasswordRecoverStep1Fragment extends Fragment {
 
         fragEmail.setLabelText("请输入邮箱地址");
         fragEmail.setHintText("email@123.comַ");
+        fragEmail.setIsEmail(true);
     }
 
     public static interface OnGoNextListener{

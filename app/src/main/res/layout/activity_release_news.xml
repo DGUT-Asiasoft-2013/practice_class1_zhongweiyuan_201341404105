@@ -67,6 +67,6 @@
         android:layout_marginEnd="29dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:background="@mipmap/bg_tab_roundrect"
+        android:background="@drawable/bg_tab_roundrect"
         android:text="发表" />
 </RelativeLayout>

@@ -11,4 +11,6 @@ public abstract class BaseInputCellFragment extends Fragment {
     abstract public void setLabelText(String labelText);
     abstract public void setHintText(String hintText );
 
+
+
 }

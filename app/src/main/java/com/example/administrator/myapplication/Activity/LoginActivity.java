@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Cookie;
@@ -29,7 +30,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class LoginActivity extends Activity {
-    SimpleTextInputCellFragment fragAccount,fragPassword;
+    SimpleTextInputCellFragment fragAccount, fragPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,12 +76,12 @@ public class LoginActivity extends Activity {
         fragPassword.setIsPassword(true);
     }
 
-    void goRegister(){
-        Intent itnt = new Intent(this,RegisterActivity.class);
+    void goRegister() {
+        Intent itnt = new Intent(this, RegisterActivity.class);
         startActivity(itnt);
     }
 
-    void goLogin(){
+    void goLogin() {
         OkHttpClient client = Server.getSharedClient();
 
         MultipartBody requestBody = new MultipartBody.Builder()
@@ -103,18 +104,16 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onResponse(Call arg0, Response arg1) throws IOException {
-
+                dlg.dismiss();
                 final String responseString = arg1.body().string();
                 ObjectMapper mapper = new ObjectMapper();
                 final User user = mapper.readValue(responseString, User.class);
 
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        dlg.dismiss();
                         new AlertDialog.Builder(LoginActivity.this)
-                                .setMessage("Hello,"+user.getName())
-//						.setMessage(responseString)
-                                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                                .setMessage("Hello!  '" + user.getName() + "'  Welcome to DGUT!")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent itnt = new Intent(LoginActivity.this, HelloWorldActivity.class);
@@ -128,18 +127,18 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onFailure(Call arg0, final IOException arg1) {
+                dlg.dismiss();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        dlg.dismiss();
 
-                        Toast.makeText(LoginActivity.this, arg1.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "失败", Toast.LENGTH_LONG).show();
                     }
                 });
             }
         });
     }
 
-    void goRecoverPassword(){
+    void goRecoverPassword() {
         Intent itnt = new Intent(this, PasswordRecoverActivity.class);
         startActivity(itnt);
     }
