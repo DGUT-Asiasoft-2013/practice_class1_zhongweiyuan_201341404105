@@ -15,6 +15,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
@@ -66,6 +67,46 @@ public class LoginActivity extends Activity {
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            // 创建退出对话框
+            AlertDialog isExit = new AlertDialog.Builder(this).create();
+            // 设置对话框标题
+            isExit.setTitle("系统提示");
+            // 设置对话框消息
+            isExit.setMessage("确定要退出系统吗？选择困难者请点确定，谢谢！");
+            // 添加选择按钮并注册监听
+            isExit.setButton("确定", listener);
+            isExit.setButton2("取消", listener);
+            // 显示对话框
+            isExit.show();
+
+        }
+
+        return false;
+
+    }
+    /**监听对话框里面的button点击事件*/
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
+    {
+        public void onClick(DialogInterface dialog, int which)
+        {
+            switch (which)
+            {
+                case AlertDialog.BUTTON_POSITIVE:// "确认"按钮退出程序
+                    System.exit(0);
+                    break;
+                case AlertDialog.BUTTON_NEGATIVE:// "取消"第二个按钮取消对话框
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -112,7 +153,7 @@ public class LoginActivity extends Activity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(LoginActivity.this)
-                                .setMessage("Hello!  '" + user.getName() + "'  Welcome to DGUT!")
+                                .setMessage("欢迎欢迎'" + user.getName() + "'欢迎光临")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {

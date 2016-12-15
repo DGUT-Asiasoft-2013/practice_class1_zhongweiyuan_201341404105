@@ -35,7 +35,7 @@ public class CommentActivity extends Activity {
 
         article = (Article) getIntent().getSerializableExtra("data");
 
-        findViewById(R.id.btn_send).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.comment_send).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -82,6 +82,7 @@ public class CommentActivity extends Activity {
 
     void onSucceed(String text){
         new AlertDialog.Builder(this).setMessage(text)
+                .setMessage("感谢您的评论！")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                     @Override

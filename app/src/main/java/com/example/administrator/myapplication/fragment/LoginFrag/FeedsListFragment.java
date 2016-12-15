@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.ReferenceType;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
@@ -41,13 +42,14 @@ public class FeedsListFragment extends Fragment {
     ListView listView;
     View btnLoadMore;
     TextView textLoadMore;
-
+    Activity activity;
     List<Article> data;
     int page = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {
+            activity = getActivity();
             view = inflater.inflate(R.layout.fragment_feed_list, null);
             btnLoadMore = inflater.inflate(R.layout.widget_load_more_button, null);
             textLoadMore = (TextView) btnLoadMore.findViewById(R.id.load_more_text);
@@ -128,7 +130,7 @@ public class FeedsListFragment extends Fragment {
     void onItemClicked(int position) {
         Article article = data.get(position);
 
-        Intent itnt = new Intent(getActivity(), ContentFeedActivity.class);
+        Intent itnt = new Intent(activity, ContentFeedActivity.class);
 //        itnt.putExtra("text", text);
         itnt.putExtra("data", article);
 
@@ -149,22 +151,23 @@ public class FeedsListFragment extends Fragment {
         Server.getSharedClient().newCall(request).enqueue(new Callback() {
             @Override
             public void onResponse(Call arg0, Response arg1) throws IOException {
-                try{
+                try {
                     final Page<Article> data = new ObjectMapper()
                             .readValue(arg1.body().string(),
-                                    new TypeReference<Page<Article>>(){});
+                                    new TypeReference<Page<Article>>() {
+                                    });
 
-                    getActivity().runOnUiThread(new Runnable() {
+                    activity.runOnUiThread(new Runnable() {
                         public void run() {
                             FeedsListFragment.this.page = data.getNumber();
                             FeedsListFragment.this.data = data.getContent();
                             listAdapter.notifyDataSetInvalidated();
                         }
                     });
-                }catch(final Exception e){
-                    getActivity().runOnUiThread(new Runnable() {
+                } catch (final Exception e) {
+                    activity.runOnUiThread(new Runnable() {
                         public void run() {
-                            new AlertDialog.Builder(getActivity())
+                            new AlertDialog.Builder(activity)
                                     .setMessage(e.getMessage())
                                     .show();
                         }
@@ -174,9 +177,9 @@ public class FeedsListFragment extends Fragment {
 
             @Override
             public void onFailure(Call arg0, final IOException e) {
-                getActivity().runOnUiThread(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(getActivity())
+                        new AlertDialog.Builder(activity)
                                 .setMessage(e.getMessage())
                                 .show();
                     }
@@ -193,7 +196,7 @@ public class FeedsListFragment extends Fragment {
         Server.getSharedClient().newCall(request).enqueue(new Callback() {
             @Override
             public void onResponse(Call arg0, Response arg1) throws IOException {
-                getActivity().runOnUiThread(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     public void run() {
                         btnLoadMore.setEnabled(true);
                         textLoadMore.setText("成功");
@@ -211,7 +214,7 @@ public class FeedsListFragment extends Fragment {
                         }
                         page = feeds.getNumber();
 
-                        getActivity().runOnUiThread(new Runnable() {
+                        activity.runOnUiThread(new Runnable() {
                             public void run() {
                                 listAdapter.notifyDataSetChanged();
                             }
@@ -224,7 +227,7 @@ public class FeedsListFragment extends Fragment {
 
             @Override
             public void onFailure(Call arg0, IOException arg1) {
-                getActivity().runOnUiThread(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     public void run() {
                         btnLoadMore.setEnabled(true);
                         textLoadMore.setText("失败");

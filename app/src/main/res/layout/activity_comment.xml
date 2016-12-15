@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <FrameLayout
         android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:background="@android:color/white" >
+        android:background="@android:color/white">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:text="Make Comment"
+            android:gravity="center"
+            android:text="评论"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/btn_send"
+            android:id="@+id/comment_send"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:text="SEND!" />
+            android:text="发表" />
 
         <View
             android:layout_width="match_parent"
@@ -31,22 +34,22 @@
             android:background="@android:color/darker_gray" />
     </FrameLayout>
 
-    <ScrollView
+
+    <EditText
+        android:id="@+id/text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="44dp" >
+        android:layout_height="129dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:textColor="@android:color/holo_blue_dark"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:padding="8dp"/>
 
-        <EditText
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:gravity="top|left"
-            android:inputType="textMultiLine"
-            android:padding="8dp" >
 
-        </EditText>
-    </ScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 
-</FrameLayout>
+</LinearLayout>

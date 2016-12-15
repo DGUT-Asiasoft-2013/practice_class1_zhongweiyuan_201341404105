@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="@android:color/holo_blue_dark"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -16,16 +17,16 @@
 
     <fragment
         android:id="@+id/input_account"
+        class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
         tools:layout="@layout/fragment_inputcell_simpletext" />
 
     <fragment
         android:id="@+id/input_password"
+        class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        class="com.example.administrator.myapplication.fragment.inputcells.SimpleTextInputCellFragment"
         tools:layout="@layout/fragment_inputcell_simpletext" />
 
     <TextView
@@ -40,20 +41,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_register"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
+            android:background="@android:color/holo_purple"
             android:text="注册" />
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"/>
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
+            android:background="@android:color/holo_purple"
             android:text="登录" />
     </LinearLayout>
 

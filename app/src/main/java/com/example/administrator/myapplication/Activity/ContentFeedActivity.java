@@ -232,9 +232,9 @@ public class ContentFeedActivity extends Activity {
 
     void onReloadLikesResult(int count){
         if(count>0){
-            btnLikes.setText("ÔÞ("+count+")");
+            btnLikes.setText("赞("+count+")");
         }else{
-            btnLikes.setText("ÔÞ");
+            btnLikes.setText("赞");
         }
     }
 
