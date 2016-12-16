@@ -126,8 +126,8 @@ public class MeFragment extends Fragment {
         progress.setVisibility(View.GONE);
         avatar.load(user);
         textView.setVisibility(View.VISIBLE);
-        textView.setTextColor(Color.BLACK);
-        textView.setText("长得还算凑合啊你，" + user.getName());
+        textView.setTextColor(Color.RED);
+        textView.setText(user.getName());
     }
 
     void onFailuer(Call call, Exception ex) {
